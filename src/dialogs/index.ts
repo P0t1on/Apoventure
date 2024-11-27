@@ -1,26 +1,23 @@
-import type { SvelteComponent } from 'svelte';
 import Pause from './pause/Pause.svelte';
+import Inventory from './inventory/Inventory.svelte';
+import { mount } from 'svelte';
+
+const dialogs: {
+  [key: string]: {
+    $set?: any;
+    $on?: any;
+  };
+} = {};
 
 const Dialogs = {
   async init(container: HTMLElement) {
-    const result: {
-      [key: string]: SvelteComponent<
-        Record<string, never>,
-        {
-          [evt: string]: CustomEvent<any>;
-        },
-        {}
-      > & {
-        $$bindings?: string | undefined;
-      };
-    } = {};
+    for (const [name, dialog] of [
+      ['pause', Pause],
+      ['inventory', Inventory],
+    ]) {
+      if (typeof name !== 'string' || typeof dialog === 'string') continue;
 
-    for (const dialog of [Pause]) {
-      console.log(dialog.name);
-
-      result[dialog.name] = new dialog({
-        target: container,
-      });
+      dialogs[name] = mount(dialog, { target: container });
     }
   },
   open(id: string, open: boolean) {},
