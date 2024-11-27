@@ -3,3 +3,8 @@
 
   let { data }: { data: PageData } = $props();
 </script>
+
+<main></main>
+
+<style lang="scss">
+</style>

@@ -1,9 +1,9 @@
 import adapter from '@sveltejs/adapter-cloudflare';
 // import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
-import sveltePre from 'svelte-preprocess';
+import { sveltePreprocess } from 'svelte-preprocess';
 import { cssModules, linearPreprocess } from 'svelte-preprocess-cssmodules';
 
-const { typescript, scss } = sveltePre;
+const { typescript, scss } = sveltePreprocess;
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
