@@ -5,6 +5,8 @@ import { writable, type Writable } from 'svelte/store';
 
 let loaded = false;
 
+type dialogNames = 'pause' | 'inventory';
+
 const dialogs: {
   [key: string]: {
     $set?: any;
@@ -28,7 +30,7 @@ const Dialogs = {
       dialogs[name] = {
         ...mount(dialog, {
           target: container,
-          props: $state({ open }),
+          props: { open },
         }),
         open,
       };
@@ -36,11 +38,12 @@ const Dialogs = {
 
     loaded = true;
   },
-  open(id: string, open: boolean) {
+  open(id: dialogNames, open?: boolean) {
     const target = dialogs[id];
     if (target === undefined) return;
 
-    target.open.set(open);
+    if (open === undefined) target.open.update((v) => !v);
+    else target.open.set(open);
   },
 } as const;
 

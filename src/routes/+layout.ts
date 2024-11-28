@@ -1,5 +1,7 @@
 import Dialog from '../dialogs';
-import type { PageLoad } from './$types';
+import EventEmitter from 'events';
+import type TypedEmitter from 'typed-emitter';
+import type { LayoutLoad } from './$types';
 
 export const load = (async () => {
   const dialogContainer = document.createElement('div');
@@ -7,5 +9,5 @@ export const load = (async () => {
   document.querySelector('body')?.appendChild(dialogContainer);
   Dialog.init(dialogContainer);
 
-  return {};
-}) satisfies PageLoad;
+  return { va: 1 };
+}) satisfies LayoutLoad;
