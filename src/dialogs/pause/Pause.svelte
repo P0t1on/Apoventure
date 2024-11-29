@@ -4,4 +4,4 @@
   export let open: Writable<boolean>;
 </script>
 
-<dialog id="pause" open>pause</dialog>
+<dialog id="pause" open={$open}>pause</dialog>

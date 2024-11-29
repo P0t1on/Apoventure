@@ -1,8 +1,19 @@
 <script lang="ts">
+  import type { Snippet } from 'svelte';
   import type { LayoutData } from './$types';
   import './style.scss';
 
   // export let data: LayoutData;
+  const { children }: { children: Snippet } = $props();
+  console.log(location.pathname);
 </script>
 
-<slot />
+<svelte:head>
+  <title>Apoventure</title>
+</svelte:head>
+
+<div id="rootLayout">
+  <a href="/activities/Adventure">test</a>
+
+  {@render children()}
+</div>
