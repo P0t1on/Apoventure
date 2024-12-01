@@ -1,8 +1,13 @@
 <script lang="ts">
+  import { onMount } from 'svelte';
   import type { PageData } from './$types';
+  import Dialog from '$lib/dialogs';
 
   let { data }: { data: PageData } = $props();
-  console.log(data);
+
+  onMount(() => {
+    Dialog.open('pause', true);
+  });
 </script>
 
 <div>ad</div>

@@ -1,13 +1,19 @@
-import Dialog from '../dialogs';
+import Dialog from '$lib/dialogs';
 import EventEmitter from 'events';
+import { browser } from '$app/environment';
 import type TypedEmitter from 'typed-emitter';
 import type { LayoutLoad } from './$types';
 
 export const load = (async () => {
-  const dialogContainer = document.createElement('div');
-  dialogContainer.id = 'dialogs';
-  document.querySelector('body')?.appendChild(dialogContainer);
-  Dialog.init(dialogContainer);
+  if (browser) {
+    const dialogContainer = document.createElement('div');
+    dialogContainer.id = 'dialogs';
+    document.querySelector('body')?.appendChild(dialogContainer);
+    Dialog.init(dialogContainer);
 
-  return { va: 1 };
+    return { root: { platform: 'client' } };
+  } else {
+    // serverside
+    return { root: { platform: 'server' } };
+  }
 }) satisfies LayoutLoad;
