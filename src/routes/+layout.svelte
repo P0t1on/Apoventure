@@ -1,11 +1,13 @@
 <script lang="ts">
-  import type { Snippet } from 'svelte';
+  import { onMount, type Snippet } from 'svelte';
   import type { LayoutData } from './$types';
   import './style.scss';
 
   // export let data: LayoutData;
   const { children }: { children: Snippet } = $props();
-  console.log(location.pathname);
+  onMount(() => {
+    console.log(location.pathname);
+  });
 </script>
 
 <svelte:head>

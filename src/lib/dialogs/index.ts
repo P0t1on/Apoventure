@@ -35,6 +35,7 @@ const Dialogs = {
         open,
       };
     }
+    console.log('loading dialogs');
 
     loaded = true;
   },
