@@ -1,4 +1,4 @@
-import Dialog from '$lib/dialogs';
+import { Dialog } from '$lib';
 import EventEmitter from 'events';
 import { browser } from '$app/environment';
 import type TypedEmitter from 'typed-emitter';

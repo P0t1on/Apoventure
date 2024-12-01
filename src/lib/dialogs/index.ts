@@ -1,3 +1,5 @@
+// Client Code
+
 import Pause from './pause/Pause.svelte';
 import Inventory from './inventory/Inventory.svelte';
 import { mount } from 'svelte';
