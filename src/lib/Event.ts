@@ -4,34 +4,51 @@ function EventManagerFactory<
     [key: string]: (...args: any[]) => void;
   }
 >() {
-  const Events: {
+  const Handlers: {
     [key in keyof M]: Set<M[key]>;
-  } = {} as typeof Events;
+  } = {} as typeof Handlers;
 
   function on<K extends keyof M>(event: K, listener: M[K]) {
-    let events = Events[event];
-    if (events === undefined) events = Events[event] = new Set();
+    let handlers = Handlers[event];
+    if (handlers === undefined) handlers = Handlers[event] = new Set();
 
-    events.add(listener);
+    handlers.add(listener);
 
-    return () => events.delete(listener);
+    return () => handlers.delete(listener);
   }
 
   function once<K extends keyof M>(event: K, listener: M[K]) {
-    let events = Events[event];
-    if (events === undefined) events = Events[event] = new Set();
+    let handlers = Handlers[event];
+    if (handlers === undefined) handlers = Handlers[event] = new Set();
 
     const wrapper = ((arg) => {
       listener(arg);
-      events.delete(wrapper);
+      handlers.delete(wrapper);
     }) as M[K];
 
-    events.add(wrapper);
+    handlers.add(wrapper);
 
-    return () => events.delete(wrapper);
+    return () => handlers.delete(wrapper);
   }
 
-  function emit<K extends keyof M>(event: K, ...args: Parameters<M[K]>) {}
+  function emit<K extends keyof M>(
+    handlers: K,
+    ...args: Parameters<M[K]>
+  ): boolean {
+    let events = Handlers[handlers];
+    if (handlers === undefined) return false;
+
+    try {
+      for (const handler of events) {
+        handler(...args);
+      }
+    } catch (error) {
+      console.log(error);
+      return false;
+    }
+
+    return true;
+  }
 
   return {
     on,
