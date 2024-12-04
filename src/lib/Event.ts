@@ -1,5 +1,5 @@
 // client Code
-function EventManagerFactory<
+export default function EventManagerFactory<
   M extends {
     [key: string]: (...args: any[]) => void;
   }

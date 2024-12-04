@@ -2,5 +2,6 @@
 // client utils
 import InitDialog from './dialogs';
 import Keyboard from './Keyboard';
+import createEventEmitter from './Event';
 
-export { InitDialog, Keyboard };
+export { InitDialog, Keyboard, createEventEmitter };
