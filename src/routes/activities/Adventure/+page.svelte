@@ -1,12 +1,16 @@
 <script lang="ts">
   import { onMount } from 'svelte';
   import type { PageData } from './$types';
-  import { Dialog } from '$lib';
 
   let { data }: { data: PageData } = $props();
 
   onMount(() => {
-    Dialog.open('pause', true);
+    if (data.platform === 'client') {
+      const { dialogs: Dialog } = data;
+      if (!Dialog) return;
+
+      Dialog.open('pause', true);
+    }
   });
 </script>
 

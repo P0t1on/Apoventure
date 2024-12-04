@@ -1,7 +1,5 @@
-import { Dialog } from '$lib';
-import EventEmitter from 'events';
 import { browser } from '$app/environment';
-import type TypedEmitter from 'typed-emitter';
+import { InitDialog, Keyboard } from '$lib';
 import type { LayoutLoad } from './$types';
 
 export const load = (async () => {
@@ -9,11 +7,17 @@ export const load = (async () => {
     const dialogContainer = document.createElement('div');
     dialogContainer.id = 'dialogs';
     document.querySelector('body')?.appendChild(dialogContainer);
-    Dialog.init(dialogContainer);
+    const dialogManager = await InitDialog(dialogContainer);
+    await Keyboard.init();
 
-    return { root: { platform: 'client' } };
+    return { platform: 'client', dialogs: dialogManager } satisfies {
+      platform: 'client';
+      dialogs: typeof dialogManager;
+    };
   } else {
     // serverside
-    return { root: { platform: 'server' } };
+    return { platform: 'server' } satisfies {
+      platform: 'server';
+    };
   }
 }) satisfies LayoutLoad;
