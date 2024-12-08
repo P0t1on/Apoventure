@@ -6,10 +6,11 @@
 
   onMount(() => {
     if (data.platform === 'client') {
-      const { dialogs: Dialog } = data;
-      if (!Dialog) return;
+      const { dialogs: Dialog, keyboards } = data;
+      if (!Dialog || !keyboards) return;
 
-      Dialog.open('pause', true);
+      keyboards.on('keyPress', (v) => console.log(v));
+      keyboards.on('keyHold', (v) => console.log(v));
     }
   });
 </script>

@@ -1,5 +1,5 @@
 import { browser } from '$app/environment';
-import { InitDialog, Keyboard } from '$lib';
+import { InitDialog, InitKeyboard } from '$lib';
 import type { LayoutLoad } from './$types';
 
 export const load = (async () => {
@@ -8,11 +8,16 @@ export const load = (async () => {
     dialogContainer.id = 'dialogs';
     document.querySelector('body')?.appendChild(dialogContainer);
     const dialogManager = await InitDialog(dialogContainer);
-    await Keyboard.init();
+    const keyboardManager = await InitKeyboard();
 
-    return { platform: 'client', dialogs: dialogManager } satisfies {
+    return {
+      platform: 'client',
+      dialogs: dialogManager,
+      keyboards: keyboardManager,
+    } satisfies {
       platform: 'client';
       dialogs: typeof dialogManager;
+      keyboards: typeof keyboardManager;
     };
   } else {
     // serverside

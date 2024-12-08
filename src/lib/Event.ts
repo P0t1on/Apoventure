@@ -54,5 +54,6 @@ export default function EventManagerFactory<
     on,
     once,
     emit,
+    destroy() {},
   };
 }
