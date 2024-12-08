@@ -36,7 +36,7 @@ export default function EventManagerFactory<
     ...args: Parameters<M[K]>
   ): boolean {
     let events = Handlers[handlers];
-    if (handlers === undefined) return false;
+    if (events === undefined) return false;
 
     try {
       for (const handler of events) {
