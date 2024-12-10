@@ -4,7 +4,7 @@
   let { data }: { data: PageData } = $props();
 </script>
 
-<main></main>
+<div>station</div>
 
 <style lang="scss">
 </style>
