@@ -4,6 +4,8 @@
 
   let { data }: { data: PageData } = $props();
 
+  function loadCard() {}
+
   onMount(() => {
     if (data.platform === 'client') {
       const { dialogs: Dialog, keyboards } = data;
@@ -15,4 +17,12 @@
   });
 </script>
 
-<div>adventure</div>
+<div id="adventure">
+  <span>d</span>
+</div>
+
+<style lang="scss">
+  div#adventure {
+    background-color: rgba(128, 128, 128, 0.2);
+  }
+</style>
