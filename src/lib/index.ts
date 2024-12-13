@@ -4,4 +4,8 @@ import InitDialog from './dialogs';
 import InitKeyboard from './Keyboard';
 import createEventEmitter from './Event';
 
+export async function sleep(ms: number) {
+  return new Promise((r) => setTimeout(r, ms));
+}
+
 export { InitDialog, InitKeyboard, createEventEmitter };
