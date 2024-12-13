@@ -104,6 +104,7 @@
       min-height: 50%;
       border-radius: 16px;
       border-width: 8px;
+      background-color: rgba(128, 128, 128, 0.2);
       border-color: brown;
       border-style: groove;
     }

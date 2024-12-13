@@ -1,10 +1,22 @@
 <script lang="ts">
   import { onMount } from 'svelte';
   import type { PageData } from './$types';
+  import type { CardType } from '$lib/types/Card';
+  import { sleep } from '$lib';
 
-  let { data }: { data: PageData } = $props();
+  let {
+    data,
+    description = $bindable(''),
+  }: { data: PageData; description: string } = $props();
 
-  function loadCard() {}
+  async function loadCard(card: CardType) {
+    const { description: cDesc } = card;
+
+    for (const char of cDesc) {
+      description += char;
+      await sleep(10);
+    }
+  }
 
   onMount(() => {
     if (data.platform === 'client') {
@@ -13,16 +25,19 @@
 
       // keyboards.on('keyPress', (v) => console.log(v));
       // keyboards.on('keyHold', (v) => console.log(v));
+      loadCard({
+        name: 'test',
+        description: 'DAYBREAK FRONTLINE／비챤 COVER [2024] ✧',
+      });
     }
   });
 </script>
 
 <div id="adventure">
-  <span>d</span>
+  <span class="description">{description}</span>
 </div>
 
 <style lang="scss">
   div#adventure {
-    background-color: rgba(128, 128, 128, 0.2);
   }
 </style>
