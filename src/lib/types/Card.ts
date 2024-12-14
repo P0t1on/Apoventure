@@ -3,3 +3,8 @@ export type CardType = {
   description: string;
   menu?: string[];
 };
+
+export type CardProps = {
+  episode: number;
+  name: string;
+};

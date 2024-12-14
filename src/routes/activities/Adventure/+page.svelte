@@ -1,40 +1,57 @@
 <script lang="ts">
   import { onMount } from 'svelte';
   import type { PageData } from './$types';
-  import type { CardType } from '$lib/types/Card';
+  import type { CardProps } from '$lib/types/Card';
   import { sleep } from '$lib';
+  import { json } from '@sveltejs/kit';
 
   let {
     data,
     description = $bindable(''),
   }: { data: PageData; description: string } = $props();
 
-  async function loadCard(card: CardType) {
+  let cardInfo = $state<CardProps>();
+
+  async function loadCard(card: CardProps) {
+    const json = await fetch('/api/storypacks', {
+      method: 'POST',
+      body: JSON.stringify(card),
+    }).then((v) => v.json());
+
+    console.log(json);
+    /*
     const { description: cDesc } = card;
 
     for (const char of cDesc) {
       description += char;
       await sleep(10);
     }
+      */
   }
 
   onMount(() => {
     if (data.platform === 'client') {
       const { dialogs: Dialog, keyboards } = data;
       if (!Dialog || !keyboards) return;
+      loadCard({ name: 'test', episode: 1 });
 
       // keyboards.on('keyPress', (v) => console.log(v));
       // keyboards.on('keyHold', (v) => console.log(v));
-      loadCard({
-        name: 'test',
-        description: 'DAYBREAK FRONTLINE／비챤 COVER [2024] ✧',
-      });
     }
   });
 </script>
 
 <div id="adventure">
-  <span class="description">{description}</span>
+  {#if cardInfo !== undefined}
+    {#await loadCard(cardInfo)}
+      <div>loading card Data...</div>
+    {:then cardData}
+      <span class:description={true}>{description}</span>
+      {cardData}
+    {/await}
+  {:else}
+    <div>no card Data</div>
+  {/if}
 </div>
 
 <style lang="scss">
