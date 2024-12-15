@@ -1,9 +1,8 @@
 <script lang="ts">
   import { onMount } from 'svelte';
   import type { PageData } from './$types';
-  import type { CardProps } from '$lib/types/Card';
+  import type { CardProps, CardType } from '$lib/types/Card';
   import { sleep } from '$lib';
-  import { json } from '@sveltejs/kit';
 
   let {
     data,
@@ -13,20 +12,22 @@
   let cardInfo = $state<CardProps>();
 
   async function loadCard(card: CardProps) {
-    const json = await fetch('/api/storypacks', {
+    const json = (await fetch('/api/storypacks', {
       method: 'POST',
       body: JSON.stringify(card),
-    }).then((v) => v.json());
+    }).then((v) => v.json())) as CardType;
 
-    console.log(json);
-    /*
-    const { description: cDesc } = card;
+    return new Promise(async (res, rej) => {
+      res(1);
+      console.log(json);
 
-    for (const char of cDesc) {
-      description += char;
-      await sleep(10);
-    }
-      */
+      const { description: cDesc } = json;
+
+      for (const char of cDesc) {
+        description += char;
+        await sleep(10);
+      }
+    });
   }
 
   onMount(() => {
