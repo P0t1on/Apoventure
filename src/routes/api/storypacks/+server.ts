@@ -4,8 +4,7 @@ import type { CardProps } from '$lib/types/Card';
 
 export async function POST({ request, cookies }) {
   const { episode, name }: CardProps = await request.json();
+  // console.log({ episode, name });
 
-  console.log({ episode, name });
-
-  return json({ yee: 1 });
+  return json({ description: 'testtestes' });
 }
