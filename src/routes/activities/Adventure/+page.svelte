@@ -18,7 +18,7 @@
     }).then((v) => v.json())) as CardType;
 
     return new Promise(async (res, rej) => {
-      res(1);
+      res('<cardData>');
       console.log(json);
 
       const { description: cDesc } = json;
@@ -34,7 +34,7 @@
     if (data.platform === 'client') {
       const { dialogs: Dialog, keyboards } = data;
       if (!Dialog || !keyboards) return;
-      loadCard({ name: 'test', episode: 1 });
+      cardInfo = { name: 'test', episode: 1 };
 
       // keyboards.on('keyPress', (v) => console.log(v));
       // keyboards.on('keyHold', (v) => console.log(v));
