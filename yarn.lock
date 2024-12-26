@@ -10,6 +10,11 @@
     "@jridgewell/gen-mapping" "^0.3.5"
     "@jridgewell/trace-mapping" "^0.3.24"
 
+"@box2d/core@^0.11.0":
+  version "0.11.0"
+  resolved "https://registry.yarnpkg.com/@box2d/core/-/core-0.11.0.tgz#29c62b984708a4908e20646824d0e4f439b1007b"
+  integrity sha512-LlMYleqFpRTxBjyPvvVw2qsirjYyRyuMbrpceiJDE4vNe8Zaz4yT/4JZv1M+ZIGsUCKviyhAg1QShM77Yt0Mtg==
+
 "@cloudflare/kv-asset-handler@0.3.4":
   version "0.3.4"
   resolved "https://registry.yarnpkg.com/@cloudflare/kv-asset-handler/-/kv-asset-handler-0.3.4.tgz#5cc152847c8ae4d280ec5d7f4f6ba8c976b585c3"
