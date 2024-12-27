@@ -1,6 +1,4 @@
 // Client Code
-
-import Pause from './pause/Pause.svelte';
 import Inventory from './inventory/Inventory.svelte';
 import { mount } from 'svelte';
 import { writable, type Writable } from 'svelte/store';
@@ -20,10 +18,7 @@ export default async function (container: HTMLElement): Promise<DialogManager> {
     };
   } = {};
 
-  for (const [name, dialog] of [
-    ['pause', Pause],
-    ['inventory', Inventory],
-  ]) {
+  for (const [name, dialog] of [['inventory', Inventory]]) {
     if (typeof name !== 'string' || typeof dialog === 'string') continue;
 
     const open = writable(false);
@@ -36,7 +31,6 @@ export default async function (container: HTMLElement): Promise<DialogManager> {
       open,
     };
   }
-  console.log('loading dialogs');
 
   return {
     open(id: dialogNames, open?: boolean) {
