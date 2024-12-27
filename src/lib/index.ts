@@ -1,6 +1,6 @@
 // place files you want to import through the `$lib` alias in this folder.
 // client utils
-import InitDialog from './dialogs';
+import { default as createDialogManager } from './dialogs';
 import {
   createEventDispatcher,
   createKeyboardDispatcher,
@@ -9,7 +9,7 @@ import {
 } from './utils';
 
 export {
-  InitDialog,
+  createDialogManager,
   createEventDispatcher,
   createKeyboardDispatcher,
   Svgs,
