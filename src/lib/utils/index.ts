@@ -1,6 +1,6 @@
-import CreateEventDispatcher from './Event';
-import CreateKeyboardDispatcher from './Keyboard';
+import createEventDispatcher from './Event';
+import createKeyboardDispatcher from './Keyboard';
 import Svgs from './Svgs.svelte';
 import * as Time from './Time';
 
-export { CreateEventDispatcher, CreateKeyboardDispatcher, Svgs, Time };
+export { createEventDispatcher, createKeyboardDispatcher, Svgs, Time };

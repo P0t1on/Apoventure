@@ -1,9 +1,9 @@
 // Client Code
 
-import { createEventEmitter } from '$lib';
+import { createEventDispatcher } from '$lib';
 
 export default async function InitKeyboardEvents(updateTick: number = 50) {
-  const emitter = createEventEmitter<{
+  const emitter = createEventDispatcher<{
     keyHold: (keys: Set<string>) => void;
     keyUp: (key: string) => void;
     keyPress: (key: string) => void;

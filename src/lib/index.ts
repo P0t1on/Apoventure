@@ -2,16 +2,16 @@
 // client utils
 import InitDialog from './dialogs';
 import {
-  CreateEventDispatcher,
-  CreateKeyboardDispatcher,
+  createEventDispatcher,
+  createKeyboardDispatcher,
   Svgs,
   Time,
 } from './utils';
 
 export {
   InitDialog,
-  CreateEventDispatcher,
-  CreateKeyboardDispatcher,
+  createEventDispatcher,
+  createKeyboardDispatcher,
   Svgs,
   Time,
 };
