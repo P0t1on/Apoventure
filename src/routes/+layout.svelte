@@ -6,9 +6,6 @@
   // states
   // export let data: LayoutData;
   const { children }: { children: Snippet } = $props();
-  onMount(() => {
-    console.log(location.pathname);
-  });
 </script>
 
 <!-- <a href="/activities/Adventure">test</a> -->

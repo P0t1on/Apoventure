@@ -6,7 +6,7 @@
   let { data }: { data: PageData } = $props();
 
   onMount(() => {
-    goto('/activities');
+    goto('/activity');
   });
 </script>
 

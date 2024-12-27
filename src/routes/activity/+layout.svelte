@@ -1,13 +1,12 @@
 <script lang="ts">
   import { onMount, type Snippet } from 'svelte';
-  import Svgs from '$lib/Svgs.svelte';
+  import { Svgs } from '$lib';
   import type { LayoutData } from './$types';
   import { goto } from '$app/navigation';
 
   type svgTypes = Parameters<typeof Svgs>[1]['type'];
 
   const acts = {
-    shield: 'Defense',
     home: 'Station',
     meeting_room: 'Adventure',
   } as const;
@@ -16,6 +15,7 @@
   let selectedAct = $state('');
   // export let data: LayoutData;
   const { children }: { children: Snippet } = $props();
+
   onMount(() => {
     console.log(location.pathname);
   });
@@ -27,8 +27,8 @@
     class:active={selectedAct === title}
     onclick={() => {
       if (selectedAct !== title)
-        goto(`/activities/${acts[category as keyof typeof acts] ?? 'Station'}`);
-      selectedAct = title;
+        // goto(`/activities/${acts[category as keyof typeof acts] ?? 'Station'}`);
+        selectedAct = title;
     }}
     role="presentation"
     {title}
@@ -44,7 +44,6 @@
 <!-- <a href="/activities/Adventure">test</a> -->
 
 <div id="activities">
-  {@render activity('shield', '방어전')}
   {@render activity('meeting_room', '모험하기')}
   {@render activity('home', '거점')}
 </div>

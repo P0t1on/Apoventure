@@ -2,7 +2,7 @@
   import { onMount } from 'svelte';
   import type { PageData } from './$types';
   import type { CardProps, CardType } from '$lib/types/Card';
-  import { sleep } from '$lib';
+  import { Time } from '$lib';
 
   let {
     data,
@@ -25,7 +25,7 @@
 
       for (const char of cDesc) {
         description += char;
-        await sleep(10);
+        await Time.sleep(10);
       }
     });
   }
