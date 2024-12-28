@@ -35,7 +35,6 @@
       const { dialogs: Dialog, keyboards } = data;
       if (!Dialog || !keyboards) return;
       cardInfo = { name: 'test', episode: 1 };
-
       // keyboards.on('keyPress', (v) => console.log(v));
       // keyboards.on('keyHold', (v) => console.log(v));
     }
