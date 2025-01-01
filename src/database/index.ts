@@ -1,34 +1,13 @@
 import { get, writable, type Writable } from 'svelte/store';
 import fs from 'fs';
 import path from 'path';
-
-type DatabaseFileType = 'json';
-
-type DatabaseServiceType = {
-  name: string;
-  database(
-    id: string,
-    saveOnCommit?: boolean,
-    type?: DatabaseFileType
-  ): DatabaseType;
-};
-
-type DatabaseType = {
-  readonly id: string;
-  readonly saveOnCommit: Writable<boolean>;
-  readonly type: DatabaseFileType;
-  readonly separator: string;
-  get<T>(id: string): Writable<T>;
-  save(): void;
-};
-
-type TableType<T> = {
-  readonly constructor: (id: string) => T;
-} & ((database: DatabaseType) => BoundTableType<T>);
-
-type BoundTableType<T> = {
-  readonly constructor: (id: string) => T;
-};
+import type {
+  DatabaseFileType,
+  DatabaseServiceType,
+  DatabaseType,
+  TableType,
+  BoundTableType,
+} from './types';
 
 export function createDatabaseService(
   name: string,

@@ -3,6 +3,7 @@
   import { Svgs } from '$lib';
   import type { LayoutData } from './$types';
   import { goto } from '$app/navigation';
+  import BuildSprites from '$lib/world/sprites/builder';
 
   type svgTypes = Parameters<typeof Svgs>[1]['type'];
 
@@ -18,6 +19,7 @@
 
   onMount(() => {
     console.log(location.pathname);
+    BuildSprites();
   });
 </script>
 

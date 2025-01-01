@@ -11,6 +11,3 @@
 <!-- <a href="/activities/Adventure">test</a> -->
 
 {@render children()}
-
-<style>
-</style>
